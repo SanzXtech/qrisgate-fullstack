@@ -1,0 +1,46 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'mobile/**'
+      - '.github/workflows/**'
+  workflow_dispatch: # Memungkinkan kita men-trigger build secara manual lewat web GitHub
+
+jobs:
+  build:
+    name: Build Release APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'mobile/package-lock.json'
+
+      - name: ☕ Setup Java (Zulu 17)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: 📦 Install Dependencies
+        working-directory: ./mobile
+        run: npm install
+
+      - name: 🔨 Build Release APK
+        working-directory: ./mobile/android
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: 📤 Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: QRISGate-Mobile-Release-APK
+          path: mobile/android/app/build/outputs/apk/release/app-release.apk
