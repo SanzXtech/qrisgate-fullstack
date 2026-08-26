@@ -14,11 +14,10 @@ qrisgate-fullstack/
 │   ├── server.js         # Main API server
 │   ├── settings.js       # Configuration
 │   └── ...
-├── android/              # Aplikasi Android Native (Java)
-│   ├── src/              # Java source code
-│   ├── res/              # Android resources
-│   ├── AndroidManifest.xml
-│   └── build.sh          # Build script (tanpa Gradle!)
+├── mobile/               # Aplikasi Android (React Native / Expo)
+│   ├── android/          # Native Android code (Notification Listener)
+│   ├── App.js            # Main React Native UI
+│   └── ...
 ├── index.html            # Vite entry point
 ├── package.json          # Dashboard dependencies
 └── vite.config.ts        # Vite configuration
@@ -33,19 +32,18 @@ qrisgate-fullstack/
 5. Output Directory: `dist`
 6. Deploy!
 
-## 📱 Build Aplikasi Android
+## 📱 Aplikasi Mobile (React Native)
 
-```bash
-cd android
-bash build.sh
-# APK output: android/bin/qrisgate.apk
-```
+Aplikasi mobile ini di-build dengan **React Native (Expo)** dan memiliki UI yang **identik dengan web dashboard**.
 
-**Requirement:** Android SDK (build-tools 35.0.0, platform android-35, Java 17)
+**Fitur Mobile:**
+- 🎧 **Notification Listener (Kotlin)** — Native background service membaca notifikasi E-Wallet otomatis
+- 💰 **Filter Otomatis** — Mirip MacroDroid, tapi didesain khusus mendeteksi pembayaran dari GoPay, DANA, OVO, ShopeePay, LinkAja, BCA, dll.
+- ⚙️ **Webhook & API Key** — Sinkron dengan backend/dashboard (login akun yang sama)
+- 📊 **UI Identik** — Dashboard penuh kontrol langsung di genggaman Anda
 
-**RAM build:** ~200MB (tanpa Gradle/Kotlin)
-
-## 🔧 Backend API
+**Download APK:**
+Silakan unduh APK rilis terbaru dari [GitHub Releases repository ini](https://github.com/SanzXtech/qrisgate-fullstack/releases).
 
 ```bash
 cd backend
