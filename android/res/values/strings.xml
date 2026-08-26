@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">QRISGate</string>
-    <string name="tab_dashboard">Dashboard</string>
-    <string name="tab_listener">Listener</string>
-    <string name="tab_settings">Pengaturan</string>
-</resources>
