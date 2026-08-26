@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎧 Notification Listener"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/text1"
+            android:layout_marginTop="40dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Baca notifikasi pembayaran E-Wallet secara otomatis"
+            android:textSize="13sp"
+            android:textColor="@color/text3"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Permission Status Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="20dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IZIN NOTIFIKASI"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@color/primary"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="3dp"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/permission_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="❌ Izin belum diberikan"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/danger"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aktifkan Notification Access agar aplikasi bisa mendeteksi pembayaran dari GoPay, DANA, OVO, ShopeePay, dll."
+                android:textSize="12sp"
+                android:textColor="@color/text3"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="14dp" />
+
+            <Button
+                android:id="@+id/btn_permission"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="🔓 Berikan Izin Notifikasi"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="@color/primary"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Webhook URL Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="20dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WEBHOOK SERVER"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@color/primary"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="3dp"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="URL tujuan pengiriman data pembayaran"
+                android:textSize="12sp"
+                android:textColor="@color/text3"
+                android:layout_marginBottom="10dp" />
+
+            <EditText
+                android:id="@+id/input_webhook"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="https://your-server.com/api/webhook"
+                android:textSize="13sp"
+                android:inputType="textUri"
+                android:background="@drawable/input_bg"
+                android:paddingHorizontal="14dp"
+                android:layout_marginBottom="12dp" />
+
+            <Button
+                android:id="@+id/btn_save_webhook"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="💾 Simpan Webhook"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="@color/success"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Live Log -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="20dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="📋 Log Aktivitas"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text1" />
+                <TextView
+                    android:id="@+id/notif_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 notif"
+                    android:textSize="12sp"
+                    android:textColor="@color/text3" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/log_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="120dp"
+                android:background="#0F172A"
+                android:padding="14dp"
+                android:textSize="11sp"
+                android:textColor="#4ADE80"
+                android:fontFamily="monospace"
+                android:text="Menunggu notifikasi..."
+                android:gravity="top" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+
+    </LinearLayout>
+</ScrollView>

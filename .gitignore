@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.apk
+*.keystore
+.env
+android/obj/
+android/bin/
+android/gen/
