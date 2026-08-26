@@ -35,6 +35,10 @@ jobs:
         working-directory: ./mobile
         run: npm install
 
+      - name: 🔑 Generate Keystore
+        working-directory: ./mobile/android/app
+        run: keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+
       - name: 🔨 Build Release APK
         working-directory: ./mobile/android
         run: ./gradlew assembleRelease --no-daemon
