@@ -267,15 +267,15 @@ function App() {
         )}
 
         <div className="card animate-fade-in" style={{ maxWidth: "400px", width: "100%", padding: "40px", position: "relative", zIndex: 10, textAlign: "center" }}>
-          <div style={{ display: "inline-flex", background: "#1D4ED8", padding: "16px", borderRadius: "20px", marginBottom: "24px" }}>
-            <Activity size={32} color="white" />
+          <div style={{ display: "inline-flex", marginBottom: "24px" }}>
+            <img src="/logo-icon.png" width="80" height="80" style={{ borderRadius: "20px", boxShadow: "0 8px 24px rgba(29, 78, 216, 0.3)" }} alt="QRISGate Logo" />
           </div>
           <h1 style={{ fontSize: "24px", fontWeight: 800, color: "var(--txt)", marginBottom: "8px" }}>Login QRISGate</h1>
           <p style={{ color: "var(--txt3)", fontSize: "14px", marginBottom: "32px" }}>Silakan login untuk mengakses dashboard.</p>
           
           <form onSubmit={(e) => {
             e.preventDefault();
-            if (loginForm.username === "SanzCEO" && loginForm.password === settings.password) {
+            if (loginForm.username === "QG" && loginForm.password === "QG") {
               localStorage.setItem("qris_auth", "true");
               setIsLoggedIn(true);
             } else {
