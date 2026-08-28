@@ -33,10 +33,12 @@ export const RADIUS = {
   full: 999,
 };
 
-export const Config = { BASE_URL = 'https://synopsis-dentists-gnome-unlikely.trycloudflare.com';
+// Mutable config object so the app can update the Server URL dynamically
+export const Config = { 
+  BASE_URL: 'https://savannah-soa-controversy-solely.trycloudflare.com'
+};
 
 export const formatRupiah = (num) => {
   if (!num && num !== 0) return '0';
   return Number(num).toLocaleString('id-ID');
-};
 };
