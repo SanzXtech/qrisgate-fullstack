@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, ScrollView, StyleSheet, Switch, TouchableOpacity, TextInput, Alert, Vibration, Platform, Linking, NativeModules } from 'react-native';
 import * as Speech from 'expo-speech';
-import { COLORS, FONTS, RADIUS, BASE_URL, formatRupiah } from '../config';
+import { COLORS, FONTS, RADIUS, Config, formatRupiah } from '../config';
 
 const { NotificationListener } = NativeModules;
 
@@ -81,7 +81,7 @@ export default function ListenerScreen({ token, settings }) {
   useEffect(() => {
     checkPermission();
     if (NotificationListener && apiKey) {
-        NotificationListener.setWebhookSettings(`${BASE_URL}/api/webhook`, apiKey);
+        NotificationListener.setWebhookSettings(`${Config.BASE_URL}/api/webhook`, apiKey);
     }
   }, [apiKey]);
 
@@ -113,7 +113,7 @@ export default function ListenerScreen({ token, settings }) {
     addLog('🔄 Menghubungkan ke server...');
 
     try {
-      const res = await fetch(`${BASE_URL}/api/dashboard`, {
+      const res = await fetch(`${Config.BASE_URL}/api/dashboard`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -121,7 +121,7 @@ export default function ListenerScreen({ token, settings }) {
         addLog('✅ Terhubung ke server QRISGate!');
         Vibration.vibrate(100);
         if (NotificationListener) {
-           NotificationListener.setWebhookSettings(`${BASE_URL}/api/webhook`, apiKey);
+           NotificationListener.setWebhookSettings(`${Config.BASE_URL}/api/webhook`, apiKey);
         }
       } else {
         setIsConnected(false);
@@ -217,7 +217,7 @@ export default function ListenerScreen({ token, settings }) {
 
     // Step 4c: Kirim ke webhook (sama persis seperti notif asli)
     try {
-      const res = await fetch(`${BASE_URL}/api/webhook`, {
+      const res = await fetch(`${Config.BASE_URL}/api/webhook`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

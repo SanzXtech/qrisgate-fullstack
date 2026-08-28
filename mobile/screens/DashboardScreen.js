@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, StyleSheet, RefreshControl, TouchableOpacity } from 'react-native';
-import { COLORS, FONTS, RADIUS, BASE_URL, formatRupiah } from '../config';
+import { COLORS, FONTS, RADIUS, Config, formatRupiah } from '../config';
 
 export default function DashboardScreen({ token, settings, onNavigate }) {
   const [stats, setStats] = useState({ income: 0, success: 0, pending: 0, failed: 0 });
@@ -9,7 +9,7 @@ export default function DashboardScreen({ token, settings, onNavigate }) {
 
   const fetchData = async () => {
     try {
-      const res = await fetch(`${BASE_URL}/api/dashboard`, {
+      const res = await fetch(`${Config.BASE_URL}/api/dashboard`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();

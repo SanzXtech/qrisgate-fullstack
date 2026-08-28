@@ -11,7 +11,7 @@ import BuatQrisScreen from './screens/BuatQrisScreen';
 import TransaksiScreen from './screens/TransaksiScreen';
 import ListenerScreen from './screens/ListenerScreen';
 import SettingsScreen from './screens/SettingsScreen';
-import { COLORS, FONTS, BASE_URL } from './config';
+import { COLORS, FONTS, Config } from './config';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,7 +51,7 @@ export default function App() {
 
     const pollInterval = setInterval(async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/dashboard`, {
+        const res = await fetch(`${Config.BASE_URL}/api/dashboard`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -76,6 +76,8 @@ export default function App() {
   const loadToken = async () => {
     try {
       const savedToken = await AsyncStorage.getItem('qris_token');
+      const savedUrl = await AsyncStorage.getItem("custom_server_url");
+      if (savedUrl) Config.BASE_URL = savedUrl;
       if (savedToken) {
         setToken(savedToken);
         fetchSettings(savedToken);
@@ -88,7 +90,7 @@ export default function App() {
 
   const fetchSettings = async (t) => {
     try {
-      const res = await fetch(`${BASE_URL}/api/dashboard`, {
+      const res = await fetch(`${Config.BASE_URL}/api/dashboard`, {
         headers: { Authorization: `Bearer ${t}` },
       });
       const data = await res.json();

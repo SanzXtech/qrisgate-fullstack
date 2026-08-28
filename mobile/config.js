@@ -33,9 +33,10 @@ export const RADIUS = {
   full: 999,
 };
 
-export const BASE_URL = 'https://synopsis-dentists-gnome-unlikely.trycloudflare.com';
+export const Config = { BASE_URL = 'https://synopsis-dentists-gnome-unlikely.trycloudflare.com';
 
 export const formatRupiah = (num) => {
   if (!num && num !== 0) return '0';
   return Number(num).toLocaleString('id-ID');
+};
 };

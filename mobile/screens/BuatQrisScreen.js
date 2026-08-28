@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert, ActivityIndicator } from 'react-native';
-import { COLORS, FONTS, RADIUS, BASE_URL, formatRupiah } from '../config';
+import { COLORS, FONTS, RADIUS, Config, formatRupiah } from '../config';
 
 export default function BuatQrisScreen({ token, settings }) {
   const [nominal, setNominal] = useState('');
@@ -16,7 +16,7 @@ export default function BuatQrisScreen({ token, settings }) {
 
     setLoading(true);
     try {
-      const res = await fetch(`${BASE_URL}/api/qris/create`, {
+      const res = await fetch(`${Config.BASE_URL}/api/qris/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

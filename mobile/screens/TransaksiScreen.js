@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, StyleSheet, RefreshControl, TouchableOpacity, Modal, Alert } from 'react-native';
-import { COLORS, FONTS, RADIUS, BASE_URL, formatRupiah } from '../config';
+import { COLORS, FONTS, RADIUS, Config, formatRupiah } from '../config';
 
 export default function TransaksiScreen({ token }) {
   const [transactions, setTransactions] = useState([]);
@@ -9,7 +9,7 @@ export default function TransaksiScreen({ token }) {
 
   const fetchData = async () => {
     try {
-      const res = await fetch(`${BASE_URL}/api/dashboard`, {
+      const res = await fetch(`${Config.BASE_URL}/api/dashboard`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -32,7 +32,7 @@ export default function TransaksiScreen({ token }) {
   const handleCancel = async () => {
     if (!cancelId) return;
     try {
-      const res = await fetch(`${BASE_URL}/api/cancel-trx?id=${cancelId}`, {
+      const res = await fetch(`${Config.BASE_URL}/api/cancel-trx?id=${cancelId}`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
       });

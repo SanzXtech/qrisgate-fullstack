@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Switch, Alert, TextInput } from 'react-native';
-import { COLORS, FONTS, RADIUS, BASE_URL } from '../config';
+import { COLORS, FONTS, RADIUS, Config } from '../config';
 
 export default function SettingsScreen({ token, settings, onLogout, onSettingsChange }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -12,7 +12,7 @@ export default function SettingsScreen({ token, settings, onLogout, onSettingsCh
 
   const handleSave = async () => {
     try {
-      await fetch(`${BASE_URL}/api/settings`, {
+      await fetch(`${Config.BASE_URL}/api/settings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export default function SettingsScreen({ token, settings, onLogout, onSettingsCh
   const toggleSandbox = async () => {
     try {
       const newMode = !settings?.sandboxMode;
-      await fetch(`${BASE_URL}/api/settings`, {
+      await fetch(`${Config.BASE_URL}/api/settings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
